@@ -5,7 +5,7 @@ The project allows you to create, edit and publish facebook articles from a web 
 
 **Usage - to be completed**
 
-**Technologies used**
+**Technologies/Libraries/APIs used**
 
 * MVC 5
 * EntityFramework 6
