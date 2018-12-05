@@ -1,0 +1,10 @@
+﻿
+<figure ng-if="model.src !== null && model.Content === null" class="op-ad">
+    <iframe src="{{model.src | trustUrl}}" height="{{model.height}}" width="{{model.width}}"></iframe>
+</figure>
+
+<figure ng-if="model.src === null && model.Content !== null" class="op-ad">
+    <iframe height="{{model.height}}" width="{{model.width}}">
+        {{model.Content}}
+    </iframe>
+</figure>

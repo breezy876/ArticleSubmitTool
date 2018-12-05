@@ -1,0 +1,21 @@
+﻿@model ArticleSubmitTool.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="container">
+    <div class="section article-detail row border z-depth-1 centered login">
+        <h4>Register</h4>
+
+        <div class="input-field col s12">
+            <label class="input-field" for="email">Email</label>
+            <input id="email" type="text" class="validate input-field" value="@Model.Email" ng-model="model.URL">
+        </div>
+
+        <div class="input-field col s12">
+            <label class="input-field" for="password">Password</label>
+            <input id="password" type="text" class="validate input-field" value="@Model.Password" ng-model="model.URL">
+        </div>
+
+    </div>
+</div>

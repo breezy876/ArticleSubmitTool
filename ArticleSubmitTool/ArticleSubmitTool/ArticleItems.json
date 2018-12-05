@@ -1,0 +1,129 @@
+{
+1: 
+	{ 
+		Attributes : [
+			{ Name:'src', Title:'Source' },
+			{ Name:'data-mode', Title:'Presentation' }
+		],
+	
+		AttributeValues : {
+			'data-mode': [
+				{Name:'aspect-fit', Title:'Aspect Fit'},
+				{Name:'aspect-fit-only', Title:'Aspect Fit Only'},
+				{Name:'fullscreen', Title:'Fullscreen'},
+				{Name:'non-interactive', Title:'Not Interactive'}
+			]
+		}
+	},
+	
+2:
+	{ 
+		Attributes : [
+			{ Name:'src', Title:'Source' },
+			{ Name:'data-mode', Title:'Presentation' },
+			{ Name:'data-fb-disable-controls', Title:'Disable Controls' },
+			{ Name:'loop', Title:'Loop' },
+		    { Name:'data-fb-disable-autoplay', Title:'Disable Autoplay' }
+		],
+	
+		AttributeValues : {
+			'data-mode': [
+				{Name:'aspect-fit', Title:'Aspect Fit'},
+				{Name:'aspect-fit-only', Title:'Aspect Fit Only'},
+				{Name:'fullscreen', Title:'Fullscreen'},
+				{Name:'non-interactive', Title:'Not Interactive'}
+			]
+		}
+	},
+	
+	6: {
+		
+		Attributes : [
+			{ Name:'width', Title:'Width' },
+			{ Name:'height', Title:'Height' },
+			{ Name:'src', Title:'Source URL' }
+		]
+	},
+	
+		7: {
+		
+		Attributes : [
+			{ Name:'geoJSON', Title:'GeoTag' }
+		]
+	},
+	
+		8: {
+		
+		Attributes : [
+			{ Name:'width', Title:'Width' },
+			{ Name:'height', Title:'Height' },
+			{ Name:'src', Title:'Source URL' }
+		]
+	},
+	
+	9: {
+		
+		Attributes : [
+			{ Name:'width', Title:'Width' },
+			{ Name:'height', Title:'Height' },
+			{ Name:'src', Title:'Source URL' }
+		]
+	},
+	
+	10: {
+		
+		Attributes : [
+			{ Name:'width', Title:'Width' },
+			{ Name:'height', Title:'Height' },
+			{ Name:'src', Title:'Source URL' }
+		]
+	},
+	
+	11: {
+		
+		Attributes : [
+			{ Name:'width', Title:'Width' },
+			{ Name:'height', Title:'Height' },
+			{ Name:'src', Title:'Source URL' }
+		]
+	},
+	
+	12: {
+		
+		Attributes : [
+			{ Name:'title', Title:'Title' },
+			{ Name:'credits', Title:'Credits' },
+			{ Name:'text-size', Title:'Text Size' },
+			{ Name:'text-align-horizontal', Title:'Horizontal Text Alignment' },
+			{ Name:'text-align-vertical', Title:'Vertical Text Alignment' },
+			{ Name:'positioning', Title:'Positioning' }
+		],
+		
+		AttributeValues : {
+			'text-size': [
+				{Name:'op-medium', Title:'Medium'},
+				{Name:'op-large', Title:'Large'},
+				{Name:'op-extra-large', Title:'Extra Large'},
+			],
+				
+			'text-align-horizontal': [
+				{Name:'op-left', Title:'Left'},
+				{Name:'op-center', Title:'Center'},
+				{Name:'op-right', Title:'Right'},
+			],
+			
+			'text-align-vertical': [
+				{Name:'op-vertical-top', Title:'Top'},
+				{Name:'op-vertical-center', Title:'Center'},
+				{Name:'op-vertical-bottom', Title:'Bottom'},
+			],
+			
+	       'positioning': [
+				{Name:'op-vertical-above', Title:'Above'},
+				{Name:'op-vertical-center', Title:'Center'},
+				{Name:'op-vertical-below', Title:'Below'},
+			]
+		}
+	},
+
+}

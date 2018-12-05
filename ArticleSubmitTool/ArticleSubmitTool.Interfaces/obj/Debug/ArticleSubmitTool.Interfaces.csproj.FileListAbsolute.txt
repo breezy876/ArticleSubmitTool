@@ -1,0 +1,17 @@
+C:\Users\CHRIS\Documents\Visual Studio 2015\Projects\ArticleSubmitTool\ArticleSubmitTool.Interfaces\bin\Debug\ArticleSubmitTool.Interfaces.dll
+C:\Users\CHRIS\Documents\Visual Studio 2015\Projects\ArticleSubmitTool\ArticleSubmitTool.Interfaces\bin\Debug\ArticleSubmitTool.Interfaces.pdb
+C:\Users\CHRIS\Documents\Visual Studio 2015\Projects\ArticleSubmitTool\ArticleSubmitTool.Interfaces\bin\Debug\ArticleSubmitTool.Domain.dll
+C:\Users\CHRIS\Documents\Visual Studio 2015\Projects\ArticleSubmitTool\ArticleSubmitTool.Interfaces\bin\Debug\ArticleSubmitTool.Domain.pdb
+C:\Users\CHRIS\Documents\Visual Studio 2015\Projects\ArticleSubmitTool\ArticleSubmitTool.Interfaces\obj\Debug\ArticleSubmitTool.Interfaces.csprojResolveAssemblyReference.cache
+C:\Users\CHRIS\Documents\Visual Studio 2015\Projects\ArticleSubmitTool\ArticleSubmitTool.Interfaces\obj\Debug\ArticleSubmitTool.Interfaces.dll
+C:\Users\CHRIS\Documents\Visual Studio 2015\Projects\ArticleSubmitTool\ArticleSubmitTool.Interfaces\obj\Debug\ArticleSubmitTool.Interfaces.pdb
+E:\Documents\Visual Studio 2015\Projects\ArticleSubmitTool\ArticleSubmitTool.Interfaces\bin\Debug\ArticleSubmitTool.Interfaces.dll
+E:\Documents\Visual Studio 2015\Projects\ArticleSubmitTool\ArticleSubmitTool.Interfaces\bin\Debug\ArticleSubmitTool.Interfaces.pdb
+E:\Documents\Visual Studio 2015\Projects\ArticleSubmitTool\ArticleSubmitTool.Interfaces\bin\Debug\ArticleSubmitTool.Domain.dll
+E:\Documents\Visual Studio 2015\Projects\ArticleSubmitTool\ArticleSubmitTool.Interfaces\bin\Debug\ArticleSubmitTool.Domain.pdb
+E:\Documents\Visual Studio 2015\Projects\ArticleSubmitTool\ArticleSubmitTool.Interfaces\bin\Debug\ArticleSubmitTool.Domain.dll.config
+E:\Documents\Visual Studio 2015\Projects\ArticleSubmitTool\ArticleSubmitTool.Interfaces\obj\Debug\ArticleSubmitTool.Interfaces.csprojAssemblyReference.cache
+E:\Documents\Visual Studio 2015\Projects\ArticleSubmitTool\ArticleSubmitTool.Interfaces\obj\Debug\ArticleSubmitTool.Interfaces.csproj.CoreCompileInputs.cache
+E:\Documents\Visual Studio 2015\Projects\ArticleSubmitTool\ArticleSubmitTool.Interfaces\obj\Debug\ArticleSubmitTool.Interfaces.csproj.CopyComplete
+E:\Documents\Visual Studio 2015\Projects\ArticleSubmitTool\ArticleSubmitTool.Interfaces\obj\Debug\ArticleSubmitTool.Interfaces.dll
+E:\Documents\Visual Studio 2015\Projects\ArticleSubmitTool\ArticleSubmitTool.Interfaces\obj\Debug\ArticleSubmitTool.Interfaces.pdb

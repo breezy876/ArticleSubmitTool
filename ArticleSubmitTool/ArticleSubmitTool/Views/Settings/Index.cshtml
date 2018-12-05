@@ -1,0 +1,105 @@
+﻿
+
+
+@using ArticleSubmitTool.Code
+@using ArticleSubmitTool.Shared
+@using Newtonsoft.Json
+@model ArticleSubmitTool.Models.UserSettingsPageModel
+
+@{
+ViewBag.ReturnUrl = "/Settings";
+}
+
+
+@{
+    var modelJSON = Newtonsoft.Json.JsonConvert.SerializeObject(Model, new JsonSerializerSettings
+    {
+        TypeNameHandling = TypeNameHandling.Objects,
+        ReferenceLoopHandling
+            = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+    });
+
+}
+
+<div ng-app="mainApp">
+
+    <div ng-controller="MainController" id="dvController" ng-init="init(@modelJSON);">
+
+        <div class="container">
+            
+            <h3>Settings</h3>
+            <div class="section article-detail row border z-depth-1">
+
+                <h5>Facebook Settings</h5>
+
+                <div class="section">
+
+                    <div>
+                        <p>You will not be able to publish Instant Articles until you login to Facebook.</p>
+                        <p>After you login you will need to do the following in order to publish Instant Articles</p>
+
+                        <ol>
+                            <li>
+                                <p>Select a Facebook page below. Note: this will only be visible after logging into Facebook.</p>
+                            </li>
+                            <li>
+                                <p>On the Instant Articles page, select the Instant Article you wish you publish and click 'Publish'.</p>
+                                <p>You can also publish from the Instant Article page after creating/editing an Instant Article.</p>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div ng-if="!Facebook.IsLoggedIn" class="input-field">
+                            <button class="btn btn-fixed btn-facebook btn-fixed" ng-click="Facebook.login()"><i class="fa fa-facebook"></i>Log In</button>
+                    </div>
+
+                        <div ng-if="Facebook.IsLoggedIn" class="input-field">
+                            @*<label class="input-field" for="page">Facebook Page</label>*@
+                            <p>Select a Facebook Page to publish Instant Articles to.</p>
+                            <select ng-model="model.FacebookPageId" class="input-field dropdown-list">
+                                <option value="" selected disabled>Choose Option</option>
+                                <option value="">None</option>
+                                <option value="{{key}}" ng-repeat="(key, val) in model.FacebookPageDDL">{{val}}</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                <div class="divider"></div>
+
+                <div class="section">
+                    <h5>User Settings</h5>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="section">
+                    <h5>Application Settings</h5>
+                </div>
+
+                <button class="btn btn-success btn-fixed" ng-click="Settings.save(model)">Save</button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts
+        {
+    <script src="~/Scripts/common.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/mainApp.js" type="text/javascript"></script>
+    <script src="~/Scripts/Modules/Settings.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function () {
+
+        });
+    </script>
+}
+
+
+
+
+

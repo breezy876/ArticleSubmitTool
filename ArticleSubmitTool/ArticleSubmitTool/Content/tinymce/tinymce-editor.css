@@ -1,0 +1,14 @@
+﻿
+.mce-content-item {
+    border: 1px dashed rgba(96, 125, 139, 0.4) !important;
+    padding: 10px !important;;
+   box-shadow: none !important;
+}
+
+.mce-content-item:hover {
+    border: 1px dashed rgba(96, 125, 139, 0.8) !important;
+        background-color: rgba(178,223,219, 0.4) !important;
+       transition: all 0.2s !important;
+}
+
+

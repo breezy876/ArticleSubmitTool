@@ -1,0 +1,56 @@
+﻿
+
+<div>
+    <div ng-if="model.Type === parent.InstantArticle.ItemType.Image">
+        <image-item model="model" parent="parent"></image-item>
+    </div>
+
+    <div ng-if="model.Type === parent.InstantArticle.ItemType.Video">
+        <video-item model="model" parent="parent"></video-item>
+    </div>
+
+    <div ng-if="model.Type === parent.InstantArticle.ItemType.Text">
+        <text-item model="model" parent="parent"></text-item>
+    </div>
+
+    <div ng-if="model.Type === parent.InstantArticle.ItemType.BlockQuote">
+        <block-quote-item model="model" parent="parent"></block-quote-item>
+    </div>
+
+    <div ng-if="model.Type === parent.InstantArticle.ItemType.PullQuote">
+        <pull-quote-item model="model" parent="parent"></pull-quote-item>
+    </div>
+
+    <div ng-if="model.Type === parent.InstantArticle.ItemType.Ad">
+        <ad-item model="model" parent="parent"></ad-item>
+    </div>
+
+    <div ng-if="model.Type === parent.InstantArticle.ItemType.Map">
+        <map-item model="model" parent="parent"></map-item>
+    </div>
+
+
+    <div ng-if="model.Type === parent.InstantArticle.ItemType.Twitter">
+        <embed-item model="model" parent="parent"></embed-item>
+    </div>
+
+    <div ng-if="model.Type === parent.InstantArticle.ItemType.Facebook">
+        <embed-item model="model" parent="parent"></embed-item>
+    </div>
+
+    <div ng-if="model.Type === parent.InstantArticle.ItemType.Instagram">
+        <embed-item model="model" parent="parent"></embed-item>
+    </div>
+
+    <div ng-if="model.Type === parent.InstantArticle.ItemType.YouTube">
+        <embed-item model="model" parent="parent"></embed-item>
+    </div>
+
+
+    <div ng-if="model.Type === parent.InstantArticle.ItemType.SlideShow">
+        <slide-show-item model="model" parent="parent"></slide-show-item>
+    </div>
+</div>
+
+
+

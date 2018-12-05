@@ -1,0 +1,11 @@
+﻿
+<figure class="op-interactive">
+    <iframe ng-if="model.src !== null && model.Content === null" src="{{model.src | trustUrl}}" height="{{model.height}}" width="{{model.width}}"></iframe>
+    <iframe ng-if="model.src === null && model.Content !== null" height="{{model.height}}" width="{{model.width}}">
+        {{model.Content}}
+    </iframe>
+    <caption-item ng-if="model.Caption != null" model="model.Caption" parent="parent"></caption-item>
+</figure>
+
+
+

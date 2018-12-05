@@ -1,0 +1,24 @@
+﻿<form class="col s12">
+    <br />
+
+    <div ng-if="!parent.InstantArticle.itemAttrHasValues(item, attr.Name)" class="input-field" ng-repeat="(attrIndex, attr) in item.Attributes">
+        <div ng-if="attr.Type === 1">
+            <label class="input-field" for="{{attr.Name}}">{{attr.Title}}</label>
+            <input id="{{attr.Name}}" type="text" class="validate input-field" value="attr.Value" ng-model="attr.Value">
+        </div>
+        <div ng-if="attr.Type === 2">
+            <input id="{{attr.Name}}" type="checkbox" class="filled-in" ng-model="checked" ng-init="checked=parent.InstantArticle.getAttrBoolVal(attr)" ng-change="parent.InstantArticle.changeAttrBoolVal(attr, checked)" />
+            <label class="input-field check" for="{{attr.Name}}">{{attr.Title}}</label>
+        </div>
+    </div>
+
+    <div ng-if="parent.InstantArticle.itemAttrHasValues(item, attr.Name)" class="input-field" ng-repeat="(attrIndex, attr) in  item.Attributes">
+        <label class="input-field" for="{{attr.Name}}">{{attr.Title}}</label>
+        <select id="{{attr.Name}}" ng-model="attr.Value" class="input-field">
+            <option value="" selected disabled>Choose Option</option>
+            <option value="">None</option>
+            <option value="{{val.Name}}" ng-repeat="(valIndex, val) in item.AttributeValues[attr.Name] | orderBy: valIndex track by $index">{{val.Title}}</option>
+        </select>
+    </div>
+</form>
+

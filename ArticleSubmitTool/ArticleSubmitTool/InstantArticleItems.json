@@ -1,0 +1,129 @@
+{
+1: 
+	{ 
+		Attributes : [
+			{ Name:'src', Title:'Source URL', Type: 1 },
+			{ Name:'data-mode', Title:'Presentation', Type: 1 }
+		],
+	
+		AttributeValues : {
+			'data-mode': [
+				{Name:'aspect-fit', Title:'Aspect Fit'},
+				{Name:'aspect-fit-only', Title:'Aspect Fit Only'},
+				{Name:'fullscreen', Title:'Fullscreen'},
+				{Name:'non-interactive', Title:'Not Interactive'}
+			]
+		}
+	},
+	
+2:
+	{ 
+		Attributes : [
+			{ Name:'src', Title:'Source URL', Type: 1  },
+			{ Name:'data-mode', Title:'Presentation', Type: 1  },
+			{ Name:'data-fb-disable-controls', Title:'Disable Controls', Type: 2  },
+			{ Name:'loop', Title:'Loop', Type: 2  },
+		    { Name:'data-fb-disable-autoplay', Title:'Disable Autoplay', Type: 2 }
+		],
+	
+		AttributeValues : {
+			'data-mode': [
+				{Name:'aspect-fit', Title:'Aspect Fit'},
+				{Name:'aspect-fit-only', Title:'Aspect Fit Only'},
+				{Name:'fullscreen', Title:'Fullscreen'},
+				{Name:'non-interactive', Title:'Not Interactive'}
+			]
+		}
+	},
+	
+	6: {
+		
+		Attributes : [
+			{ Name:'width', Title:'Width', Type: 1  },
+			{ Name:'height', Title:'Height', Type: 1  },
+			{ Name:'src', Title:'Source URL', Type: 1  }
+		]
+	},
+	
+		7: {
+		
+		Attributes : [
+			{ Name:'geoJSON', Title:'GeoTag', Type: 1  }
+		]
+	},
+	
+		8: {
+		
+		Attributes : [
+			{ Name:'width', Title:'Width', Type: 1  },
+			{ Name:'height', Title:'Height', Type: 1  },
+			{ Name:'src', Title:'Source URL', Type: 1  }
+		]
+	},
+	
+	9: {
+		
+		Attributes : [
+			{ Name:'width', Title:'Width', Type: 1  },
+			{ Name:'height', Title:'Height', Type: 1  },
+			{ Name:'src', Title:'Source URL', Type: 1  }
+		]
+	},
+	
+	10: {
+		
+		Attributes : [
+			{ Name:'width', Title:'Width', Type: 1  },
+			{ Name:'height', Title:'Height', Type: 1  },
+			{ Name:'src', Title:'Source URL', Type: 1  }
+		]
+	},
+	
+	11: {
+		
+		Attributes : [
+			{ Name:'width', Title:'Width', Type: 1  },
+			{ Name:'height', Title:'Height', Type: 1  },
+			{ Name:'src', Title:'Source URL', Type: 1  }
+		]
+	},
+	
+	12: {
+		
+		Attributes : [
+			{ Name:'title', Title:'Title', Type: 1  },
+			{ Name:'credits', Title:'Credits', Type: 1  },
+			{ Name:'text-size', Title:'Text Size', Type: 1  },
+			{ Name:'text-align-horizontal', Title:'Horizontal Text Alignment', Type: 1  },
+			{ Name:'text-align-vertical', Title:'Vertical Text Alignment', Type: 1  },
+			{ Name:'positioning', Title:'Positioning', Type: 1  }
+		],
+		
+		AttributeValues : {
+			'text-size': [
+				{Name:'op-medium', Title:'Medium'},
+				{Name:'op-large', Title:'Large'},
+				{Name:'op-extra-large', Title:'Extra Large'},
+			],
+				
+			'text-align-horizontal': [
+				{Name:'op-left', Title:'Left'},
+				{Name:'op-center', Title:'Center'},
+				{Name:'op-right', Title:'Right'},
+			],
+			
+			'text-align-vertical': [
+				{Name:'op-vertical-top', Title:'Top'},
+				{Name:'op-vertical-center', Title:'Center'},
+				{Name:'op-vertical-bottom', Title:'Bottom'},
+			],
+			
+	       'positioning': [
+				{Name:'op-vertical-above', Title:'Above'},
+				{Name:'op-vertical-center', Title:'Center'},
+				{Name:'op-vertical-below', Title:'Below'},
+			]
+		}
+	},
+
+}

@@ -1,0 +1,163 @@
+﻿
+
+@using ArticleSubmitTool.Code
+@using Newtonsoft.Json
+
+@model ArticleSubmitTool.Models.InstantArticles.InstantArticlesPageModel
+
+@{
+    var modelJSON = Newtonsoft.Json.JsonConvert.SerializeObject(Model, new JsonSerializerSettings
+    {
+        TypeNameHandling = TypeNameHandling.Objects,
+        ReferenceLoopHandling
+     = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+    });
+}
+
+<div ng-app="mainApp">
+
+    <div ng-controller="MainController" id="dvController" ng-init="init(@modelJSON);">
+
+
+        <div class="container" query>
+            <h3>Articles</h3>
+            <div class="section article-detail row border z-depth-1">
+
+
+                <table class="bordered">
+
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Date Created</th>
+                            <th>URL</th>
+                            <th>Status</th>
+                            <th>&nbsp;</th>
+                            <th>&nbsp;</th>
+                            <th>&nbsp;</th>
+                            <th>&nbsp;</th>
+                            <th>
+                                <a class="btn btn-success btn-small" href="/Article/Detail">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr ng-repeat="(articleIndex, article) in  model.InstantArticles | orderBy: articleIndex track by $index">
+
+                            <td>
+                                {{article.Title}}
+                            </td>
+
+                            <td>
+                                {{article.DateCreated}}
+                            </td>
+
+                            <td>
+                                {{article.URL}}
+                            </td>
+
+                            <td>
+                                {{article.PageURL}}
+                            </td>
+
+                            <td>
+                                {{article.Status}}
+                            </td>
+
+                            <td>
+                                <a class="btn btn-primary btn-small" href="{{'/Article/Detail?id='+article.Id}}" title="Edit">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                            </td>
+
+                            <td>
+                                <button class="btn btn-facebook btn-small" title="Publish" ng-click="UI.showPublishModal(article)">
+                                    <i class="fa fa-upload"></i>
+                                </button>
+                            </td>
+
+
+                            <td>
+                                <a class="btn btn-primary btn-small" href="{{'/Article/Preview?id='+article.Id}}" title="Preview">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                            </td>
+
+                            <td>
+                                <button class="btn btn-error btn-small" ng-click="InstantArticlesPage.remove(article)" title="Delete">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <div id="publishModal" class="modal">
+            <span class="modal-close-top" ng-click="UI.closeModal('publishModal')"><i class="fa fa-times"></i></span>
+            <div class="modal-content  col s12 row">
+
+                <h5>Publish Article</h5>
+                <div class="section">
+
+                    <div class="row" ng-if="!Facebook.IsLoggedIn">
+                        <div class="col s6">
+                            <p>You are not logged into Facebook. Please Login first.</p>
+                        </div>
+                        <div class="col s2-offset-s4">
+                            <button class="btn btn-fixed btn-facebook" ng-click="Facebook.login()"><i class="fa fa-facebook"></i>Log In</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s6">You can edit the article before publishing.</div>
+                        <div class="col s2-offset-s4">
+                            <button class="btn btn-fixed btn-primary">Edit</button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s6">You can preview the article before publishing.</div>
+                        <div class="col s2-offset-s4">
+                            <button class="btn btn-fixed btn-primary">Preview</button>
+                        </div>
+                    </div>
+
+                    <div class="row" ng-if="Facebook.IsLoggedIn">
+                        <div class="col s6">&nbsp;</div>
+                        <div class="col s2-offset-s4">
+                            <a href="#!" class=" modal-action modal-close btn btn-success btn-fixed ok-action">Publish</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+@section Scripts
+        {
+    <script src="~/Scripts/common.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/mainApp.js" type="text/javascript"></script>
+    <script src="~/Scripts/Modules/Articles.js" type="text/javascript"></script>
+}
+
+
+
+
+

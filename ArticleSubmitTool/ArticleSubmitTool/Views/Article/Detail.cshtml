@@ -1,0 +1,373 @@
+﻿
+
+@using ArticleSubmitTool.Code
+@using Newtonsoft.Json
+@using ArticleSubmitTool.Shared
+
+@model ArticleSubmitTool.Web.Models.InstantArticles.InstantArticleModel
+
+@{
+        var modelJSON = Newtonsoft.Json.JsonConvert.SerializeObject(Model, new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.Objects,
+         ReferenceLoopHandling
+         = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+    });
+
+    var isEdit = ViewData["IsEdit"] != null && (bool)ViewData["IsEdit"];
+}
+
+<div ng-app="mainApp">
+
+    <div ng-controller="MainController" id="dvController" ng-init="init(@modelJSON);">
+
+        <div ng-view class="container">
+
+            <h4>@((isEdit ? "Edit" : "New") + " Article")</h4>
+
+            <div class="section article-detail row border z-depth-1">
+                <form class="col s12">
+                    <h5>Properties</h5>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label class="input-field" for="url">URL</label>
+                            <input id="url" type="text" class="validate input-field" value="@Model.URL" ng-model="model.URL" tabindex="2">
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+                    <div class="section">
+                        <h6>Feedback</h6>
+
+                        <div class="input-field">
+                            <input id="allowFeedback" type="checkbox" class="filled-in" ng-model="checked" ng-init="checked=model.ArticleFeedbackEnabled" ng-change="InstantArticle.changeFeedback(model, checked)"/>
+                            <label class="input-field check" for="allowFeedback">Allow User Feedback</label>
+                        </div>
+
+                        <div class="input-field">
+                            <label class="input-field" for="mediaType">Facebook Feedback</label>
+                            <select multiple id="facebookFeedback" ng-model="model.feedbackType" class="input-field" ng-change="InstantArticle.changeFacebookFeedback(model, model.feedbackType)">
+                                <option value="1">Likes</option>
+                                <option value="2">Comments</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+                    <div class="section">
+                        <h6>News Feed Preview</h6>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label class="input-field" for="NewsFeedTitle">Title</label>
+                                <input id="NewsFeedTitle" type="text" class="validate input-field" ng-model="model.NewsFeedTitle">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label class="input-field" for="NewsFeedDescription">Description</label>
+                                <textarea id="NewsFeedDescription" class="input-field validate" placeholder="Enter text here" ng-model="model.NewsFeedDescription"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <label class="input-field" for="NewsFeedImage">Image URL</label>
+                                <input id="NewsFeedImage" type="text" class="validate input-field" ng-model="model.NewsFeedImage">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="section article-detail row border z-depth-1">
+                <form class="col s12">
+                    <h5>Header</h5>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label class="input-field" for="title">Title</label>
+                            <input id="title" type="text" class="validate input-field" value="@Model.Title" ng-model="model.Title" tabindex="1">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label class="input-field" for="subtitle">Sub Title</label>
+                            <input id="subtitle" type="text" class="validate input-field" value="@Model.SubTitle" ng-model="model.SubTitle" tabindex="2">
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label class="input-field" for="kicker">Kicker</label>
+                            <input id="kicker" type="text" class="validate input-field" value="@Model.Kicker" ng-model="model.Kicker" tabindex="2">
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+                    <div class="section">
+                        <h6>Authors</h6>
+                        <div>
+                            <button class="btn btn-success btn-smallest" title="Add" ng-click="UI.showAuthorModal(model, false)">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                            <ul class="collection" ng-if="model.Authors.length > 0">
+                                <li class="collection-item selectable" ng-repeat="(authorIndex, authorName) in model.Authors">
+                                    <div>
+                                        {{authorName}}<button title="Delete" class="btn toolbar-btn btn-success secondary-content" ng-click="InstantArticle.removeAuthor(model, authorIndex)"><i class="fa fa-trash"></i></button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+                    <div class="section">
+                        <h6>Media</h6>
+
+                        <div class="input-field">
+                            <label class="input-field" for="mediaType">Media Type</label>
+                            <select id="mediaType" ng-model="mediaType" class="input-field" ng-change="InstantArticle.changeHeaderMedia(model, mediaType)">
+                                <option value="" selected disabled>Choose Option</option>
+                                <option value="0" ng-selected="model.HeaderMedia === null">None</option>
+                                <option value="1" ng-selected="model.HeaderMedia.Type === InstantArticle.ItemType.Image">Image</option>
+                                <option value="2" ng-selected="model.HeaderMedia.Type === InstantArticle.ItemType.Video">Video</option>
+                            </select>
+                        </div>
+
+                        <div class="article-item" ng-if="model.HeaderMedia != null">
+                            <div class="header row">
+                                <span class="col s2 push-s11 toolbar">
+                                    <button class="hidden btn toolbar-btn btn-success"><i></i></button>
+                                    <button class="btn toolbar-btn btn-success" ng-click="InstantArticle.editItem(model.HeaderMedia)"><i class="fa fa-cog" title="Options"></i></button>
+                                </span>
+                            </div>
+                            <div class="row">
+                                <image-item ng-if="model.HeaderMedia.Type === InstantArticle.ItemType.Image" model="model.HeaderMedia" parent="parent" class="col s10"></image-item>
+                                <video-item ng-if="model.HeaderMedia.Type === InstantArticle.ItemType.Video" model="model.HeaderMedia" parent="parent" class="col s10"></video-item>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="divider"></div>
+                    <div class="section">
+                        <h6>Ads</h6>
+
+                        <div class="input-field">
+                            <input id="autoAdPlacement" type="checkbox" class="filled-in" ng-model="checked" ng-init="checked=model.AutoAdPlacement" ng-change="InstantArticle.changeAdPlacement(model, checked)" />
+                            <label class="input-field check" for="autoAdPlacement">Automatic Ad Placement</label>
+                        </div>
+
+                        <button class="btn btn-success btn-smallest" title="Add" ng-click="InstantArticle.addHeaderAd(model)">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                        <br/>
+
+                        <div ng-if="model.HeaderAds !== null && model.HeaderAds.length > 0" class="section article-item" ng-repeat="(adIndex, ad) in model.HeaderAds">
+                            <div class="header row">
+                                <span class="col s2 push-s11 toolbar">
+                                    <button class="btn toolbar-btn btn-success" ng-click="InstantArticle.editItem(ad)"><i class="fa fa-cog" title="Options"></i></button>
+                                    <button class="btn toolbar-btn btn-success" ng-click="InstantArticle.removeHeaderAd(model, ad)"><i class="fa fa-trash" title="Delete"></i></button>
+                                </span>
+                            </div>
+                            <div class="row">
+                                <ad-item model="ad" parent="parent" class="col s12"></ad-item>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="section article-detail row border z-depth-1">
+
+                <div class="col s12">
+                    <h5>Body Content</h5>
+
+                    <button class="btn btn-success btn-smallest dropdown-button" title="Add" data-activates="itemDropdown">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                    <br />
+
+                    <div ng-if="model.BodyItems.length == 0" class="section article-item empty">
+                        <p>Article body content will appear here.</p>
+                    </div>
+
+                    <div ng-if="model.BodyItems.length > 0" class="section article-item body" ng-repeat="(itemIndex, item) in  model.BodyItems">
+          
+                        <div class="header row">
+  
+                            <span class="header-icon col s1">
+                                <i class="{{UI.Icons[item.Type]}}"></i>
+                            </span>
+
+                            <span class="item-name col s1"><h6>{{item.Name}}</h6></span>
+                        
+                            <div class="col s2 push-s9">
+                                <span ng-if="InstantArticle.itemHasAttributes(item)" class="toolbar">
+                                    <button ng-if="InstantArticle.itemHasAttributes(item)" class="btn toolbar-btn btn-success" ng-click="InstantArticle.editItem(item)"><i class="fa fa-cog" title="Options"></i></button>
+                                    <button class="btn toolbar-btn btn-success" ng-click="InstantArticle.removeBodyItem(model, item)"><i class="fa fa-trash" title="Delete"></i></button>
+                                </span>
+                           
+                                <span ng-if="!InstantArticle.itemHasAttributes(item)" class="toolbar">
+                                    <button class="btn toolbar-btn btn-success hidden"><i class="fa fa-trash" title="Delete"></i></button>
+                                    <button class="btn toolbar-btn btn-success" ng-click="InstantArticle.removeBodyItem(model, item)"><i class="fa fa-trash" title="Delete"></i></button>
+                                </span>
+      
+                            </div>
+
+                        </div>
+                        <instant-article-item index="itemIndex" model="item" parent="parent" class="row"></instant-article-item>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="section article-detail row border z-depth-1">
+       
+                <form class="col s12">
+                    <h5>Footer</h5>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label class="input-field" for="Credits">Credits</label>
+                            <textarea id="Credits" class="input-field validate" placeholder="Enter text here" ng-model="model.Credits"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label class="input-field" for="Copyright">Copyright</label>
+                            <textarea id="Copyright" class="input-field validate" placeholder="Enter text here" ng-model="model.Copyright"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label class="input-field" for="RelatedArticles">Related Articles</label>
+                            <textarea id="RelatedArticles" class="input-field validate" placeholder="Enter text here" ng-model="model.RelatedArticles"></textarea>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+            <button class="btn btn-success btn-fixed" ng-click="InstantArticle.save(model)">Save</button>
+
+                <button ng-if="Facebook.IsLoggedIn" class="btn btn-fixed btn-facebook" ng-click="InstantArticle.publish(model)">Publish</button>
+
+
+        </div>
+
+
+        <ul id="itemDropdown" class="dropdown-content">
+            <li>
+                <h6>Media</h6>
+                <table>
+                    <tr>
+                        <td ng-click="InstantArticle.addBodyItem(model, 1)" class="dropdown-item"><i class="fa fa-image fa-2x" title="Image"></i></td>
+                        <td ng-click="InstantArticle.addBodyItem(model, 2)" class="dropdown-item"><i class="fa fa-video-camera fa-2x" title="Video"></i></td>
+                        <td ng-click="InstantArticle.addBodyItem(model, 13)" class="dropdown-item"><i class="fa fa-desktop fa-2x" title="Slideshow"></i></td>
+                        <td ng-click="InstantArticle.addBodyItem(model, 6)" class="dropdown-item"><i class="fa fa-newspaper-o fa-2x" title="Ad"></i></td>
+                    </tr>
+                </table>
+            </li>
+
+            <li class="divider"></li>
+            <li>
+                <h6>Misc</h6>
+                <table>
+                    <tr>
+                        <td class="dropdown-item" ng-click="InstantArticle.addBodyItem(model, 3)"><i class="fa fa-font fa-2x" title="Text"></i></td>
+                        <td class="dropdown-item" ng-click="InstantArticle.addBodyItem(model, 5)"><i class="fa fa-quote-left fa-2x" title="BlockQuote"></i></td>
+                        <td class="dropdown-item" ng-click="InstantArticle.addBodyItem(model, 4)"><i class="fa fa-quote-right fa-2x" title="PullQuote"></i></td>
+                        <td class="dropdown-item" ng-click="InstantArticle.addBodyItem(model, 7)"><i class="fa fa-map-marker fa-2x" title="Map"></i></td>
+                    </tr>
+                </table>
+            </li>
+
+            <li class="divider"></li>
+
+            <li>
+                <h6>Embeds</h6>
+                <table>
+                    <tr>
+                        <td ng-click="InstantArticle.addBodyItem(model, 11)" class="dropdown-item"><i class="fa fa-youtube-play fa-2x" title="YouTube"></i></td>
+                        <td ng-click="InstantArticle.addBodyItem(model, 8)" class="dropdown-item"><i class="fa fa-twitter fa-2x" title="Twitter"></i></td>
+                        <td ng-click="InstantArticle.addBodyItem(model, 9)" class="dropdown-item"><i class="fa fa-facebook fa-2x" title="Facebook"></i></td>
+                        <td ng-click="InstantArticle.addBodyItem(model, 10)" class="dropdown-item"><i class="fa fa-instagram fa-2x" title="Instagram"></i></td>
+                    </tr>
+                </table>
+            </li>
+
+        </ul>
+
+    <div id="authorModal" class="modal">
+        <span class="modal-close-top" ng-click="UI.closeModal('authorModal')"><i class="fa fa-times"></i></span>
+        <div class="modal-content">
+            <h5>Add Author</h5>
+            <form class="col s12">
+                <label class="input-field" for="name">Name</label>
+                <input id="name" type="text" class="validate input-field">
+            </form>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close btn btn-success btn-small ok-action">Ok</a>
+        </div>
+    </div>
+
+    <div id="itemAttributesModal" class="modal">
+        <span class="modal-close-top" ng-click="UI.closeModal('itemAttributesModal')"><i class="fa fa-times"></i></span>
+
+        <div class="modal-content  col s12 row">
+            <h5>{{modalItem.Name}} Options</h5>
+
+
+            <ul ng-if="modalItem.Caption != null" class="tabs">
+                <li class="tab col s2"><a class="active" href="#mediaTab">Media</a></li>
+                <li class="tab col s2"><a href="#captionTab">Caption</a></li>
+            </ul>
+
+            <div id="mediaTab">
+                <item-options item="modalItem" parent="parent"></item-options>
+            </div>
+
+            <div ng-if="modalItem.Caption != null" id="captionTab">
+                <item-options item="modalItem.Caption" parent="parent"></item-options>
+            </div>
+
+
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close btn btn-success btn-small ok-action">Ok</a>
+        </div>
+    </div>
+
+
+
+    </div>
+</div>
+
+
+@section Scripts
+        {
+    <script src="~/Scripts/common.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/mainApp.js" type="text/javascript"></script>
+    <script src="~/Scripts/Modules/ArticleDetail.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function () {
+            //var scope = $('#dvController').scope();
+            //doInit(scope);
+        });
+    </script>
+}
+
+
+
+
+

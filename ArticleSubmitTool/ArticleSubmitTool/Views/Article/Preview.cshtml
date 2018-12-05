@@ -1,0 +1,26 @@
+﻿
+
+@using Newtonsoft.Json
+@using ArticleSubmitTool.Shared
+
+@model ArticleSubmitTool.Web.Models.InstantArticles.InstantArticleModel
+
+@{
+    var articleMarkup = ViewData["articleMarkup"];
+}
+
+<div class="container">
+
+
+    <h4>Preview Article</h4>
+
+    <div class="section article-detail row border z-depth-1">
+        @Html.Raw(articleMarkup)
+    </div>
+</div>
+
+
+
+
+
+
