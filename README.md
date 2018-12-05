@@ -10,4 +10,7 @@ The project allows you to create, edit and publish facebook articles from a web 
 * MVC 5
 * EntityFramework 6
 * AngularJS
+* TinyMCE
+* AutoMapper
+* Facebook API
 
